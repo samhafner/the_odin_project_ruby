@@ -19,12 +19,6 @@ class Board
     @board.map! do |row|
       row.map { |cell| cell == input ? symbol : cell }
     end
-
-    @board.each_with_index do |row, row_index|
-      row.each_with_index do |_column, column_index|
-        @board[row_index][column_index] = symbol if @board[row_index][column_index] == input
-      end
-    end
   end
 
   private
