@@ -1,6 +1,8 @@
+require 'colorize'
+
 module GameMessages
   def self.welcome_message
-    puts 'Welcome to Tic Tac Toe!'
+    puts 'Welcome to Tic Tac Toe!'.colorize(color: :green, mode: :bold)
   end
 
   def self.separator
@@ -12,7 +14,7 @@ module GameMessages
   end
 
   def self.winner_message(winner)
-    puts "#{winner} won!"
+    puts "#{winner} won!".colorize(color: :green, mode: :bold)
   end
 
   def self.player_turn_message(player, symbol)
@@ -20,25 +22,27 @@ module GameMessages
   end
 
   def self.player_input_message(player)
-    puts "#{player}, please enter a number between 1 and 9."
+    puts "#{player}, please enter a number between 1 and 9.".colorize(color: :blue, mode: :bold)
   end
 
   def self.invalid_input_message
-    puts 'Invalid input. Please try again.'
+    puts 'Invalid input. Please try again.'.colorize(color: :red)
   end
 
   def self.play_again_message
-    puts 'Would you like to play again? (y/n)'
+    puts 'Would you like to play again? (y/n)'.colorize(color: :blue, mode: :bold)
   end
 
   def self.goodbye_message
     puts 'Thanks for playing!'
   end
 
-  def self.current_score(score)
+  def self.current_score(scores)
+    puts ''
     puts 'Score:'
-    score.each do |name, score|
+    scores.each do |name, score|
       puts "#{name}: #{score}"
     end
+    puts ''
   end
 end
