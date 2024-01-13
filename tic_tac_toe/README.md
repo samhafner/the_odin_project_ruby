@@ -1,7 +1,14 @@
-Source: https://www.theodinproject.com/lessons/ruby-tic-tac-toe
+# Tic Tac Toe
 
-Build a tic-tac-toe game on the command line where two human players can play against each other and the board is displayed in between turns.
+This is a Tic Tac Toe game built in Ruby, run in the terminal. It is a [project](https://www.theodinproject.com/lessons/ruby-tic-tac-toe) from the Ruby course of the Odin Project.
 
-1. Think about how you would set up the different elements within the game… What should be a class? Instance variable? Method? A few minutes of thought can save you from wasting an hour of coding.
-1. Build your game, taking care to not share information between classes any more than you have to.
-1. Post your solution below, then check out this example solution from RosettaCode.org.
+## How to play
+
+1. Clone this repository
+1. Run `bundle install` in the terminal
+1. Run `ruby tic_tac_toe/main.rb` in the terminal
+1. Follow the instructions
+
+## Screenshot
+
+![Screenshot](../assets/tic_tac_toe.png)
