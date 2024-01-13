@@ -2,11 +2,7 @@ class Board
   attr_reader :board
 
   def initialize
-    @board = # important: use the block syntax to avoid the same array being used in each row
-      Array.new(3) do
-        Array.new(3, ' ')
-      end
-    fill_board!
+    @board = create_board
   end
 
   def draw_board
@@ -32,11 +28,15 @@ class Board
 
   private
 
-  def fill_board!
-    @board.each_with_index do |row, row_index|
+  def create_board
+    board = Array.new(3) do
+      Array.new(3)
+    end
+    board.each_with_index do |row, row_index|
       row.each_with_index do |_column, column_index|
         row[column_index] = row_index * 3 + column_index + 1
       end
     end
+    board
   end
 end
