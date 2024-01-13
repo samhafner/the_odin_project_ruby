@@ -6,12 +6,12 @@ WINNING_COMBINATIONS = [
   [1, 2, 3], [4, 5, 6], [7, 8, 9], # horizontal wins
   [1, 4, 7], [2, 5, 8], [3, 6, 9], # vertical wins
   [1, 5, 9], [3, 5, 7]             # diagonal wins
-]
+].freeze
 
 class TicTacToe
   def initialize
-    @player1 = Player.new("Player 1", "X")
-    @player2 = Player.new("Player 2", "O")
+    @player1 = Player.new('Player 1', 'X')
+    @player2 = Player.new('Player 2', 'O')
     @current_player = @player1
     @game_board = Board.new
     @score = {
@@ -21,25 +21,25 @@ class TicTacToe
   end
 
   def play
-    GameMessages::welcome_message
+    GameMessages.welcome_message
 
     loop do
       @game_board.draw_board
       play_turn
       break if game_over?
+
       change_player
     end
 
     end_game
 
     GameMessages.current_score(@score)
-
-    GameMessages::play_again_message
+    GameMessages.play_again_message
     again = gets.chomp.downcase
     if again == 'y'
       play_again
     else
-      GameMessages::goodbye_message
+      GameMessages.goodbye_message
     end
   end
 
@@ -54,8 +54,8 @@ class TicTacToe
 
   def end_game
     @game_board.draw_board
-    GameMessages::draw_message if draw?
-    GameMessages::winner_message(@current_player.name) if winner?
+    GameMessages.draw_message if draw?
+    GameMessages.winner_message(@current_player.name) if winner?
     set_score
   end
 
@@ -64,21 +64,19 @@ class TicTacToe
   end
 
   def play_turn
-    GameMessages::player_turn_message(@current_player.name, @current_player.symbol)
+    GameMessages.player_turn_message(@current_player.name, @current_player.symbol)
 
     input = nil
     loop do
-      GameMessages::player_input_message(@current_player.name)
+      GameMessages.player_input_message(@current_player.name)
       input = gets.chomp.to_i
-      GameMessages::invalid_input_message unless (1..9).include?(input) && valid_move?(input)
+      GameMessages.invalid_input_message unless (1..9).include?(input) && valid_move?(input)
       break if (1..9).include?(input) && valid_move?(input)
     end
 
     @game_board.update_board(input, @current_player.symbol)
     GameMessages.separator
   end
-
-  private
 
   def valid_move?(input)
     @game_board.board.flatten.include?(input)
@@ -102,10 +100,10 @@ class TicTacToe
   end
 
   def change_player
-    if @current_player == @player1
-      @current_player = @player2
-    else
-      @current_player = @player1
-    end
+    @current_player = if @current_player == @player1
+                        @player2
+                      else
+                        @player1
+                      end
   end
 end

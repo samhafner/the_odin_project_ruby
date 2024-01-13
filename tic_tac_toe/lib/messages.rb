@@ -1,10 +1,10 @@
 module GameMessages
   def self.welcome_message
-    puts "Welcome to Tic Tac Toe!"
+    puts 'Welcome to Tic Tac Toe!'
   end
 
   def self.separator
-    puts "-------------------------------"
+    puts '-------------------------------'
   end
 
   def self.draw_message
@@ -24,20 +24,20 @@ module GameMessages
   end
 
   def self.invalid_input_message
-    puts "Invalid input. Please try again."
+    puts 'Invalid input. Please try again.'
   end
 
   def self.play_again_message
-    puts "Would you like to play again? (y/n)"
+    puts 'Would you like to play again? (y/n)'
   end
 
   def self.goodbye_message
-    puts "Thanks for playing!"
+    puts 'Thanks for playing!'
   end
 
   def self.current_score(score)
-    puts "Score:"
-    score.each do |name,score|
+    puts 'Score:'
+    score.each do |name, score|
       puts "#{name}: #{score}"
     end
   end

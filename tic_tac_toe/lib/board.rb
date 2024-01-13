@@ -2,7 +2,10 @@ class Board
   attr_reader :board
 
   def initialize
-    @board = Array.new(3) { Array.new(3, ' ') } # important: use the block syntax to avoid the same array being used in each row
+    @board = # important: use the block syntax to avoid the same array being used in each row
+      Array.new(3) do
+        Array.new(3, ' ')
+      end
     fill_board!
   end
 
