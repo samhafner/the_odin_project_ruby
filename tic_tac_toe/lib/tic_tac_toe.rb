@@ -34,22 +34,22 @@ class TicTacToe
     end_game
 
     GameMessages.current_score(@score)
-    GameMessages.play_again_message
-    again = gets.chomp.downcase
-    if again == 'y'
-      play_again
-    else
-      GameMessages.goodbye_message
-    end
+    play_again
   end
 
   private
 
   def play_again
-    GameMessages.separator
-    @current_player = @player1
-    @game_board = Board.new
-    play
+    GameMessages.play_again_message
+    again = gets.chomp.downcase
+    if again == 'y'
+      GameMessages.separator
+      @current_player = @player1
+      @game_board = Board.new
+      play
+    else
+      GameMessages.goodbye_message
+    end
   end
 
   def end_game
@@ -75,7 +75,6 @@ class TicTacToe
     end
 
     @game_board.update_board(input, @current_player.symbol)
-    GameMessages.separator
   end
 
   def valid_move?(input)
