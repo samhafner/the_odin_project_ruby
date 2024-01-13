@@ -1,0 +1,3 @@
+[submodule "odin_basic_ruby_projects"]
+	path = odin_basic_ruby_projects
+	url = https://github.com/samhafner/odin_basic_ruby_projects.git
