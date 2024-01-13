@@ -10,18 +10,17 @@ class Board
   end
 
   def draw_board
-    puts ""
-    puts " #{@board[0][0]} | #{@board[0][1]} | #{@board[0][2]} "
-    puts "---+---+---"
-    puts " #{@board[1][0]} | #{@board[1][1]} | #{@board[1][2]} "
-    puts "---+---+---"
-    puts " #{@board[2][0]} | #{@board[2][1]} | #{@board[2][2]} "
-    puts ""
+    puts ''
+    @board.each_with_index do |row, i|
+      puts " #{row[0]} | #{row[1]} | #{row[2]} "
+      puts '---+---+---' unless i == @board.length - 1
+    end
+    puts ''
   end
 
   def update_board(input, symbol)
     @board.each_with_index do |row, row_index|
-      row.each_with_index do |column, column_index|
+      row.each_with_index do |_column, column_index|
         @board[row_index][column_index] = symbol if @board[row_index][column_index] == input
       end
     end
@@ -31,7 +30,7 @@ class Board
 
   def fill_board!
     @board.each_with_index do |row, row_index|
-      row.each_with_index do |column, column_index|
+      row.each_with_index do |_column, column_index|
         row[column_index] = row_index * 3 + column_index + 1
       end
     end
