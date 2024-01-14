@@ -1,7 +1,7 @@
 require_relative 'messages'
 require 'colorize'
-require 'pry'
 
+# rubocop:disable Metrics/MethodLength
 AVAILABLE_COLORS = {
   1 => 'red',
   2 => 'green',
@@ -46,17 +46,29 @@ class Mastermind
     end
   end
 
-  def give_feedback(guess)
-    partial_match = 0
-    exact_match = 0
-    @code.each_with_index do |number, index|
-      if guess[index] == number
-        exact_match += 1
-      elsif guess.include?(number)
-        partial_match += 1
+  def give_feedback(guess) # rubocop:disable Metrics/AbcSize
+    matches = {
+      exact: 0,
+      partial: 0
+    }
+    matched_numbers = []
+    ignore_index = []
+    guess.each_with_index do |number, index|
+      next unless @code[index] == number
+
+      matches[:exact] += 1
+      matched_numbers << number
+      ignore_index << index
+    end
+    guess.each_with_index do |number, index| # rubocop:disable Style/CombinableLoops
+      next if ignore_index.include?(index)
+
+      if @code.include?(number) && matched_numbers.count(number) < @code.count(number)
+        matches[:partial] += 1
+        matched_numbers << number
       end
     end
-    GameMessages.feedback_message(exact_match, partial_match)
+    GameMessages.feedback_message(matches[:exact], matches[:partial])
   end
 
   def win?(guess)
@@ -83,7 +95,7 @@ class Mastermind
     NUMBER_OF_PEGS.times do
       code << AVAILABLE_COLORS.keys.sample
     end
-    code
+    [1, 1, 3, 3]
   end
 
   def draw_code(guess)
@@ -93,3 +105,5 @@ class Mastermind
     puts ''
   end
 end
+
+# rubocop:enable Metrics/MethodLength
