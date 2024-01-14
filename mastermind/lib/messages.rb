@@ -42,6 +42,6 @@ module GameMessages
   end
 
   def self.feedback_message(exact_match, partial_match)
-    puts "You have #{exact_match} exact matche(s) and #{partial_match} partial matche(s)."
+    puts "You have #{exact_match} exact match(es) and #{partial_match} partial match(es)."
   end
 end
